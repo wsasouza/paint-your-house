@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const SettingsContainer = styled.main`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin: 10rem auto 0 auto;
+  margin: 10rem auto 3rem auto;
   max-width: 72rem;
   width: 100%;
   padding: 2rem 3rem;
@@ -21,12 +21,12 @@ export const SettingsContainer = styled.main`
   }
 `
 
-export const SettingsDisplay = styled.h1`
+export const SettingsTitle = styled.h1`
   display: flex;
   align-items: center;
   gap: 0.25rem;
   font-family: ${(props) => props.theme.fonts.title};
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: bold;
 
   &::before {
@@ -44,15 +44,15 @@ export const SettingsDisplay = styled.h1`
   }
 `
 
+export const SettingsSubtitle = styled.h2`
+  font-family: ${(props) => props.theme.fonts.title};
+  font-size: 1.125rem;
+`
+
 export const DefaultValues = styled.div`
-  margin-top: 2rem;
+  margin-top: 1.25rem;
   display: flex;
   flex-direction: column;
-
-  h2 {
-    font-family: ${(props) => props.theme.fonts.title};
-    font-size: 1.125rem;
-  }
 
   p {
     line-height: 2;
@@ -75,5 +75,9 @@ export const ActionButton = styled.button`
 
   &:hover {
     background: linear-gradient(180deg, #e4660d 0%, #ff8c3b 100%);
+  }
+
+  @media (max-width: 940px) {
+    width: 100%;
   }
 `

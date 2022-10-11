@@ -1,4 +1,4 @@
-export const defaultValues = {
+export const businessRulesDefaultValues = {
   minWall: 1,
   maxWall: 50,
   maxDoorAndWindowsPercent: 50,
@@ -10,8 +10,23 @@ export const defaultValues = {
   updatedAt: new Date('2022-10-08T01:46:53.946Z'),
 }
 
-export function initialBusinessRules(rules: string) {
-  const saved = localStorage.getItem(rules)
+export const paintCoverDefaultValue = {
+  paintCover: 5,
+  updatedAt: new Date('2022-10-08T01:46:53.946Z'),
+}
+
+export const paintCanSizesDefaultValues = {
+  paintCanSizes: [
+    { id: 'paint-1', size: 0.5 },
+    { id: 'paint-2', size: 2.5 },
+    { id: 'paint-3', size: 3.6 },
+    { id: 'paint-4', size: 18 },
+  ],
+  updatedAt: new Date('2022-10-08T01:46:53.946Z'),
+}
+
+export function initialBusinessRules(key: string) {
+  const saved = localStorage.getItem(key)
 
   if (saved) {
     const initialValue = JSON.parse(saved || '')
@@ -21,5 +36,33 @@ export function initialBusinessRules(rules: string) {
       updatedAt: new Date(initialValue.updatedAt),
     }
     return initialValueWithDate
-  } else return defaultValues
+  } else return businessRulesDefaultValues
+}
+
+export function initialPaintCover(key: string) {
+  const saved = localStorage.getItem(key)
+
+  if (saved) {
+    const initialValue = JSON.parse(saved || '')
+
+    const initialValueWithDate = {
+      ...initialValue,
+      updatedAt: new Date(initialValue.updatedAt),
+    }
+    return initialValueWithDate
+  } else return paintCoverDefaultValue
+}
+
+export function initialPaintCanSizes(key: string) {
+  const saved = localStorage.getItem(key)
+
+  if (saved) {
+    const initialValue = JSON.parse(saved || '')
+
+    const initialValueWithDate = {
+      ...initialValue,
+      updatedAt: new Date(initialValue.updatedAt),
+    }
+    return initialValueWithDate
+  } else return paintCanSizesDefaultValues
 }

@@ -1,17 +1,19 @@
-import { useContextSelector } from 'use-context-selector'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 
-import {
-  BusinessRulesContext,
-  UpdateBusinessRules,
-} from '../../../../contexts/BusinessRulesContexts'
+import { businessRulesDefaultValues } from '../../../../utils/initialValue'
+import { BusinessRulesType } from '../../../../contexts/BusinessRulesContexts'
 
-import { ActionButton, SettingsDisplay, DefaultValues } from '../../styles'
+import {
+  ActionButton,
+  DefaultValues,
+  SettingsSubtitle,
+  SettingsTitle,
+} from '../../styles'
 import { BusinessRulesConfigContainer } from './styles'
-import { defaultValues } from '../../../../utils/initialValue'
+import { useBusinessRules } from '../../../../hooks/useBusinessRules'
 
 const businessRulesFormSchema = yup.object({
   minWall: yup.number(),
@@ -25,22 +27,18 @@ const businessRulesFormSchema = yup.object({
 })
 
 export function BusinessRulesConfig() {
-  const rules = useContextSelector(BusinessRulesContext, (context) => {
-    return context.businessRules
-  })
-
-  const updateRules = useContextSelector(BusinessRulesContext, (context) => {
-    return context.updateBusinessRules
-  })
-
   const navigate = useNavigate()
+
+  const { businessRules, updateBusinessRules } = useBusinessRules()
 
   const { register, handleSubmit } = useForm({
     resolver: yupResolver(businessRulesFormSchema),
-    defaultValues: rules,
+    defaultValues: businessRules,
   })
 
-  function handleUpdateBusinessRules(data: UpdateBusinessRules) {
+  function handleUpdateBusinessRules(
+    data: Omit<BusinessRulesType, 'updatedAt'>,
+  ) {
     const {
       minWall,
       maxWall,
@@ -52,7 +50,7 @@ export function BusinessRulesConfig() {
       heightWindow,
     } = data
 
-    updateRules({
+    updateBusinessRules({
       minWall,
       maxWall,
       maxDoorAndWindowsPercent,
@@ -68,7 +66,7 @@ export function BusinessRulesConfig() {
 
   return (
     <BusinessRulesConfigContainer>
-      <SettingsDisplay>Configurações gerais</SettingsDisplay>
+      <SettingsTitle>Configurações gerais</SettingsTitle>
       <form onSubmit={handleSubmit(handleUpdateBusinessRules)}>
         <ul>
           <li>
@@ -174,10 +172,12 @@ export function BusinessRulesConfig() {
             <span>m</span>
           </li>
         </ul>
-        <ActionButton type="submit">Atualizar Valores</ActionButton>
+        <ActionButton onClick={() => handleSubmit(handleUpdateBusinessRules)}>
+          Atualizar Valores
+        </ActionButton>
       </form>
       <DefaultValues>
-        <h2>Valores Padrão</h2>
+        <SettingsSubtitle>Valores Padrão</SettingsSubtitle>
 
         <p>
           Área mínima da parede:{' '}
@@ -210,7 +210,7 @@ export function BusinessRulesConfig() {
         </p>
         <ActionButton
           type="button"
-          onClick={() => handleUpdateBusinessRules(defaultValues)}
+          onClick={() => handleUpdateBusinessRules(businessRulesDefaultValues)}
         >
           Retomar valores padrão
         </ActionButton>
