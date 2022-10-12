@@ -1,9 +1,11 @@
-import { PaintCalculatorContainer } from './styles'
+import { StepFormLayout } from '../../layouts/StepFormLayout'
+import { PaintCalculatorContainer, PaintCalculatorTitle } from './styles'
 
 export function PaintCalculator() {
   return (
     <PaintCalculatorContainer>
-      <h1>Page PaintCalculator</h1>
+      <PaintCalculatorTitle>Cálculo de tinta</PaintCalculatorTitle>
+      <StepFormLayout />
     </PaintCalculatorContainer>
   )
 }

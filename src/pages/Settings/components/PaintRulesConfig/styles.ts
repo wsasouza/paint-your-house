@@ -31,11 +31,7 @@ export const PaintCoverRulesForm = styled.form`
 `
 
 export const PaintCanSizesContainer = styled.div`
-  margin-top: 7rem;
-
-  @media (max-width: 940px) {
-    margin-top: 3rem;
-  }
+  margin-top: 3rem;
 `
 
 export const PaintSizeContainer = styled.div`

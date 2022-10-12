@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components'
 
 import { Router } from './routes/Router'
 import { BusinessRulesProvider } from './contexts/BusinessRulesContexts'
+import { FormProvider } from './providers/FormProvider'
 
 import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
@@ -12,7 +13,9 @@ export function App() {
     <BrowserRouter>
       <ThemeProvider theme={defaultTheme}>
         <BusinessRulesProvider>
-          <Router />
+          <FormProvider>
+            <Router />
+          </FormProvider>
         </BusinessRulesProvider>
         <GlobalStyle />
       </ThemeProvider>

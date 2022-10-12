@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useNavigate } from 'react-router-dom'
 import { PaintBucket } from 'phosphor-react'
 import * as yup from 'yup'
 
@@ -26,6 +27,8 @@ const paintRulesFormSchema = yup.object({
 })
 
 export function PaintRulesConfig() {
+  const navigate = useNavigate()
+
   const { paintCoverRule, paintCanSizesRules, updatePaintCoverRule } =
     usePaintRules()
 
@@ -38,6 +41,8 @@ export function PaintRulesConfig() {
     const { paintCover } = data
 
     updatePaintCoverRule({ paintCover })
+
+    navigate('/paint-calculator')
   }
 
   return (
@@ -78,9 +83,7 @@ export function PaintRulesConfig() {
       </DefaultValues>
 
       <PaintCanSizesContainer>
-        <SettingsSubtitle>
-          Tamanhos das lata de tinta em litros
-        </SettingsSubtitle>
+        <SettingsSubtitle>Tamanhos das latas de tinta</SettingsSubtitle>
 
         <PaintSizeContainer>
           {paintCanSizesRules.paintCanSizes.map((paint) => {
