@@ -8,6 +8,9 @@ export const FormReducer = (state: State, action: Action) => {
     case FormActions.setCurrentStep:
       return { ...state, currentStep: action.payload }
 
+    case FormActions.setName:
+      return { ...state, name: action.payload }
+
     case FormActions.setWall1:
       return { ...state, wall1: action.payload }
 

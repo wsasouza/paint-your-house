@@ -11,6 +11,7 @@ interface IFormProviderProps {
 
 const initialData: State = {
   currentStep: 0,
+  name: '',
   wall1: 0,
   wall2: 0,
   wall3: 0,
