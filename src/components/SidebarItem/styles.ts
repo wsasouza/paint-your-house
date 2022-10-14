@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const SidebarItemContainer = styled.div`
   margin: 1.5rem 0;
@@ -12,7 +12,7 @@ export const MainContent = styled.div`
 `
 
 interface IconProps {
-  active: boolean
+  variant: 1 | 2 | 3 | 4
 }
 
 export const Icon = styled.div<IconProps>`
@@ -29,6 +29,12 @@ export const Icon = styled.div<IconProps>`
   svg {
     color: ${(props) => props.theme.colors['gray-100']};
   }
+
+  ${(props) =>
+    props.variant === 1 &&
+    css`
+      border-top: 5px solid ${(props) => props.theme.colors['gray-100']};
+    `};
 `
 
 interface PointProps extends IconProps {}

@@ -7,47 +7,48 @@ import {
   NumberSquareTwo,
 } from 'phosphor-react'
 
-import { useForm } from '../../hooks/useForm'
-
 import { Icon, MainContent, Point, SidebarItemContainer } from './styles'
 
 type SidebarItemOptionType = {
   icon: ReactNode
   path: string
+  variant: 1 | 2 | 3 | 4
 }
 
 const sidebarItemOptions: SidebarItemOptionType[] = [
   {
     icon: <NumberSquareOne size={32} />,
     path: 'step1',
+    variant: 1,
   },
   {
     icon: <NumberSquareTwo size={32} />,
     path: 'step2',
+    variant: 2,
   },
   {
     icon: <NumberSquareThree size={32} />,
     path: 'step3',
+    variant: 3,
   },
   {
     icon: <NumberSquareFour size={32} />,
     path: 'step4',
+    variant: 4,
   },
 ]
 
 export function SidebarItem() {
-  const { state } = useForm()
-
   return (
     <SidebarItemContainer>
-      {sidebarItemOptions.map(({ icon, path }, index) => (
+      {sidebarItemOptions.map(({ icon, path, variant }, index) => (
         <MainContent key={index}>
           <NavLink to={path}>
-            <Icon active={state.currentStep === index + 1}>{icon}</Icon>
+            <Icon variant={variant}>{icon}</Icon>
           </NavLink>
 
           <NavLink to={path}>
-            <Point active={state.currentStep === index + 1} />
+            <Point variant={variant} />
           </NavLink>
         </MainContent>
       ))}

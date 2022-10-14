@@ -12,8 +12,10 @@ import {
 
 export function PaintCalculator() {
   const [startForm, setStartForm] = useState(false)
-
-  const navigate = useNavigate()
+  const [wallArea1, setWallArea1] = useState(0)
+  const [wallArea2, setWallArea2] = useState(0)
+  const [wallArea3, setWallArea3] = useState(0)
+  const [wallArea4, setWallArea4] = useState(0)
 
   function handleStartForm() {
     navigate('step1')

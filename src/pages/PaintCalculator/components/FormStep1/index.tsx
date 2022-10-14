@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useForm as useReactHookForm } from 'react-hook-form'
+import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useOutletContext } from 'react-router-dom'
@@ -40,7 +40,7 @@ export function FormStep1() {
   const { handleStopForm } = useOutletContext<ContextType>()
   const { calculateWallArea } = useBusinessRules()
 
-  const { register, handleSubmit } = useReactHookForm({
+  const { register, handleSubmit } = useReactHookForm<FormStep1Inputs>({
     resolver: yupResolver(formStep1InputsSchema),
   })
 
@@ -88,7 +88,7 @@ export function FormStep1() {
     })
   }
 
-  const handleStepForm1Submit = (data: FormStep1Inputs) => {
+  const stepForm1Submit = (data: FormStep1Inputs) => {
     const { name, height1, width1, doors1, windows1 } = data
 
     nameChange(name)
@@ -111,18 +111,11 @@ export function FormStep1() {
     }
   }
 
-  // const handleNextStep: SubmitHandler<FormStep1Inputs> = (
-  //   data: FormStep1Inputs,
-  // ) => {
-  //   stepForm1Submit(data)
-  // }
-  console.log(
-    state.name,
-    state.height1,
-    state.width1,
-    state.doors1,
-    state.windows1,
-  )
+  const handleNextStep: SubmitHandler<FormStep1Inputs> = (
+    data: FormStep1Inputs,
+  ) => {
+    stepForm1Submit(data)
+  }
 
   return (
     <StepContainer>
@@ -154,7 +147,7 @@ export function FormStep1() {
           step="0.01"
           placeholder="0,00"
           {...register('height1', {
-            value: `${state.height1 > 0 ? state.height1 : ''}`,
+            value: Number(`${state.height1 > 0 ? state.height1 : ''}`),
           })}
           required
         />
@@ -169,7 +162,7 @@ export function FormStep1() {
           step="0.01"
           placeholder="0,00"
           {...register('width1', {
-            value: `${state.width1 > 0 ? state.width1 : ''}`,
+            value: Number(`${state.width1 > 0 ? state.width1 : ''}`),
           })}
           required
         />
@@ -184,7 +177,7 @@ export function FormStep1() {
           step="1"
           placeholder="0"
           {...register('doors1', {
-            value: `${state.doors1 >= 0 ? state.doors1 : ''}`,
+            value: Number(`${state.doors1 >= 0 ? state.doors1 : ''}`),
           })}
         />
         <span>un</span>
@@ -198,14 +191,12 @@ export function FormStep1() {
           step="1"
           placeholder="0"
           {...register('windows1', {
-            value: `${state.windows1 >= 0 ? state.windows1 : ''}`,
+            value: Number(`${state.windows1 >= 0 ? state.windows1 : ''}`),
           })}
         />
         <span>un</span>
       </StepContainerItemInput>
-      <PaintCalculatorActionButton
-        onClick={handleSubmit(handleStepForm1Submit)}
-      >
+      <PaintCalculatorActionButton onClick={handleSubmit(handleNextStep)}>
         <SkipForward size={16} weight="duotone" /> Próximo
       </PaintCalculatorActionButton>
     </StepContainer>
