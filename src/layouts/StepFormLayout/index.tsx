@@ -2,11 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { SidebarItem } from '../../components/SidebarItem'
 import { Sidebar, StepFormLayoutContainer, Steps } from './styles'
 
-export type ContextType = {
-  handleStopForm: () => void
-}
-
-export function StepFormLayout({ handleStopForm }: ContextType) {
+export function StepFormLayout() {
   return (
     <StepFormLayoutContainer>
       <Steps>
@@ -14,7 +10,7 @@ export function StepFormLayout({ handleStopForm }: ContextType) {
           <SidebarItem />
         </Sidebar>
 
-        <Outlet context={{ handleStopForm }} />
+        <Outlet />
       </Steps>
     </StepFormLayoutContainer>
   )
