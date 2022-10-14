@@ -1,14 +1,11 @@
-import { useEffect } from 'react'
-import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useOutletContext } from 'react-router-dom'
 import { SkipForward, XSquare } from 'phosphor-react'
 
-import { ContextType } from '../../../../layouts/StepFormLayout'
-import { useForm } from '../../../../hooks/useForm'
-import { FormActions } from '../../../../enums/FormActions'
 import { useBusinessRules } from '../../../../hooks/useBusinessRules'
+import { usePaintCalcAreas } from '../../../../hooks/usePaintCalcAreas'
+import { usePaintCalcFormControls } from '../../../../hooks/usePaintCalcFormControls'
 
 import {
   PaintCalculatorActionButton,
@@ -20,185 +17,155 @@ import {
 } from '../../styles'
 import { NameInput } from './styles'
 
-interface FormStep1Inputs {
+interface FormStepInputs {
   name: string
-  height1: number
-  width1: number
-  doors1: number
-  windows1: number
+  height: number
+  width: number
+  doors: number
+  windows: number
 }
 
-const formStep1InputsSchema = yup.object({
+const formStepInputsSchema = yup.object({
   name: yup.string().min(3).required(),
-  height1: yup.number().required(),
-  width1: yup.number().required(),
-  doors1: yup.number().default(0),
-  windows1: yup.number().default(0),
+  height: yup.number().required(),
+  width: yup.number().required(),
+  doors: yup.number().default(0),
+  windows: yup.number().default(0),
 })
 
 export function FormStep1() {
-  const { handleStopForm } = useOutletContext<ContextType>()
+  const { name, updateName, wallArea1, updateWallArea1 } = usePaintCalcAreas()
   const { calculateWallArea } = useBusinessRules()
+  const { formCancel } = usePaintCalcFormControls()
 
-  const { register, handleSubmit } = useReactHookForm<FormStep1Inputs>({
-    resolver: yupResolver(formStep1InputsSchema),
+  const { register, handleSubmit } = useForm<FormStepInputs>({
+    resolver: yupResolver(formStepInputsSchema),
   })
 
-  const { state, dispatch } = useForm()
+  const handleStepFormSubmit = (data: FormStepInputs) => {
+    const { name, height, width, doors, windows } = data
 
-  useEffect(() => {
-    dispatch({
-      type: FormActions.setCurrentStep,
-      payload: 1,
-    })
-  }, [dispatch])
-
-  const nameChange = (name: string) => {
-    dispatch({
-      type: FormActions.setName,
-      payload: name,
-    })
-  }
-
-  const height1Change = (height1: number) => {
-    dispatch({
-      type: FormActions.setHeight1,
-      payload: height1,
-    })
-  }
-
-  const width1Change = (width1: number) => {
-    dispatch({
-      type: FormActions.setWidth1,
-      payload: width1,
-    })
-  }
-
-  const doors1Change = (doors1: number) => {
-    dispatch({
-      type: FormActions.setDoors1,
-      payload: doors1,
-    })
-  }
-
-  const windows1Change = (windows1: number) => {
-    dispatch({
-      type: FormActions.setWindows1,
-      payload: windows1,
-    })
-  }
-
-  const stepForm1Submit = (data: FormStep1Inputs) => {
-    const { name, height1, width1, doors1, windows1 } = data
-
-    nameChange(name)
-
-    const calcAreaData = {
-      height: height1,
-      width: width1,
-      doors: doors1,
-      windows: windows1,
+    const wallData = {
+      height,
+      width,
+      doors,
+      windows,
     }
 
-    const area = calculateWallArea(calcAreaData)
-    console.log(area)
+    const area = calculateWallArea(wallData)
 
     if (area > 0) {
-      height1Change(height1)
-      width1Change(width1)
-      doors1Change(doors1)
-      windows1Change(windows1)
-    }
-  }
+      const wallDataOk = {
+        height,
+        width,
+        doors,
+        windows,
+        wallArea: area,
+      }
+      updateName(name)
 
-  const handleNextStep: SubmitHandler<FormStep1Inputs> = (
-    data: FormStep1Inputs,
-  ) => {
-    stepForm1Submit(data)
+      updateWallArea1(wallDataOk)
+    }
   }
 
   return (
     <StepContainer>
       <StepContainerHeader>
         <StepContainerTitle>Parede 1/4</StepContainerTitle>
-        <StopFormButton title="Cancelar" onClick={handleStopForm}>
+        <StopFormButton title="Cancelar" onClick={formCancel}>
           <XSquare size={22} weight="regular" />
         </StopFormButton>
       </StepContainerHeader>
 
-      <NameInput>
-        <label htmlFor="">Cômodo:</label>
-        <input
-          autoFocus
-          type="text"
-          placeholder="Digite o nome do cômodo"
-          {...register('name', {
-            value: `${state.name !== '' ? state.name : ''}`,
-          })}
-          required
-        />
-      </NameInput>
-      <StepContainerItemInput>
-        <label htmlFor="">Altura:</label>
-        <input
-          type="number"
-          min="0.1"
-          max="10"
-          step="0.01"
-          placeholder="0,00"
-          {...register('height1', {
-            value: Number(`${state.height1 > 0 ? state.height1 : ''}`),
-          })}
-          required
-        />
-        <span>m</span>
-      </StepContainerItemInput>
-      <StepContainerItemInput>
-        <label htmlFor="">Comprimento:</label>
-        <input
-          type="number"
-          min="0.1"
-          max="50"
-          step="0.01"
-          placeholder="0,00"
-          {...register('width1', {
-            value: Number(`${state.width1 > 0 ? state.width1 : ''}`),
-          })}
-          required
-        />
-        <span>m</span>
-      </StepContainerItemInput>
-      <StepContainerItemInput>
-        <label htmlFor="">Portas:</label>
-        <input
-          type="number"
-          min="0"
-          max="10"
-          step="1"
-          placeholder="0"
-          {...register('doors1', {
-            value: Number(`${state.doors1 >= 0 ? state.doors1 : ''}`),
-          })}
-        />
-        <span>un</span>
-      </StepContainerItemInput>
-      <StepContainerItemInput>
-        <label htmlFor="">Janelas:</label>
-        <input
-          type="number"
-          min="0"
-          max="10"
-          step="1"
-          placeholder="0"
-          {...register('windows1', {
-            value: Number(`${state.windows1 >= 0 ? state.windows1 : ''}`),
-          })}
-        />
-        <span>un</span>
-      </StepContainerItemInput>
-      <PaintCalculatorActionButton onClick={handleSubmit(handleNextStep)}>
-        <SkipForward size={16} weight="duotone" /> Próximo
-      </PaintCalculatorActionButton>
+      <form onSubmit={handleSubmit(handleStepFormSubmit)}>
+        <NameInput>
+          <label htmlFor="name">Cômodo:</label>
+          <input
+            id="name"
+            autoFocus
+            type="text"
+            placeholder="Digite o nome do cômodo"
+            {...register('name', {
+              value: `${name !== '' ? name : ''}`,
+            })}
+            required
+          />
+        </NameInput>
+        <StepContainerItemInput>
+          <label htmlFor="height">Altura:</label>
+          <input
+            id="height"
+            type="number"
+            min="0.1"
+            max="10"
+            step="0.01"
+            placeholder="0,00"
+            {...register('height', {
+              value: Number(
+                `${wallArea1.height !== 0 ? wallArea1.height : ''}`,
+              ),
+            })}
+            required
+          />
+          <span>m</span>
+        </StepContainerItemInput>
+        <StepContainerItemInput>
+          <label htmlFor="width">Comprimento:</label>
+          <input
+            id="width"
+            type="number"
+            min="0.1"
+            max="50"
+            step="0.01"
+            placeholder="0,00"
+            {...register('width', {
+              value: Number(`${wallArea1.width > 0 ? wallArea1.width : ''}`),
+            })}
+            required
+          />
+          <span>m</span>
+        </StepContainerItemInput>
+        <StepContainerItemInput>
+          <label htmlFor="doors">Portas:</label>
+          <input
+            id="doors"
+            type="number"
+            min="0"
+            max="10"
+            step="1"
+            placeholder="0"
+            {...register('doors', {
+              value: Number(`${wallArea1.doors >= 0 ? wallArea1.doors : ''}`),
+            })}
+          />
+          <span>un</span>
+        </StepContainerItemInput>
+        <StepContainerItemInput>
+          <label htmlFor="windows">Janelas:</label>
+          <input
+            id="windows"
+            type="number"
+            min="0"
+            max="10"
+            step="1"
+            placeholder="0"
+            {...register('windows', {
+              value: Number(
+                `${wallArea1.windows >= 0 ? wallArea1.windows : ''}`,
+              ),
+            })}
+          />
+          <span>un</span>
+        </StepContainerItemInput>
+        <StepContainerItemInput>
+          <label htmlFor="">Área da parede 1:</label>
+          <input type="number" value={wallArea1.wallArea.toFixed(2)} readOnly />
+          <span>m</span>
+        </StepContainerItemInput>
+        <PaintCalculatorActionButton type="submit">
+          <SkipForward size={16} weight="duotone" /> Próximo
+        </PaintCalculatorActionButton>
+      </form>
     </StepContainer>
   )
 }

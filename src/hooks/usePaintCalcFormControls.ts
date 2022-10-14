@@ -1,7 +1,7 @@
 import { useContextSelector } from 'use-context-selector'
 import { PaintCalculatorContext } from '../contexts/PaintCalculatorContexts'
 
-export function usePaintCalculatorFormControls() {
+export function usePaintCalcFormControls() {
   const startForm = useContextSelector(PaintCalculatorContext, (context) => {
     return context.startForm
   })

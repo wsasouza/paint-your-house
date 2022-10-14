@@ -9,13 +9,16 @@ import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
 
 import 'react-toastify/dist/ReactToastify.min.css'
+import { PaintCalculatorProvider } from './contexts/PaintCalculatorContexts'
 
 export function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={defaultTheme}>
         <BusinessRulesProvider>
-          <Router />
+          <PaintCalculatorProvider>
+            <Router />
+          </PaintCalculatorProvider>
         </BusinessRulesProvider>
         <GlobalStyle />
         <ToastContainer

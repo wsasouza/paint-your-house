@@ -1,7 +1,15 @@
 import { useContextSelector } from 'use-context-selector'
 import { PaintCalculatorContext } from '../contexts/PaintCalculatorContexts'
 
-export function PaintCalculatorAreas() {
+export function usePaintCalcAreas() {
+  const name = useContextSelector(PaintCalculatorContext, (context) => {
+    return context.name
+  })
+
+  const updateName = useContextSelector(PaintCalculatorContext, (context) => {
+    return context.updateName
+  })
+
   const wallArea1 = useContextSelector(PaintCalculatorContext, (context) => {
     return context.wallArea1
   })
@@ -47,10 +55,12 @@ export function PaintCalculatorAreas() {
   )
 
   return {
+    name,
     wallArea1,
     wallArea2,
     wallArea3,
     wallArea4,
+    updateName,
     updateWallArea1,
     updateWallArea2,
     updateWallArea3,

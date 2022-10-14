@@ -6,7 +6,7 @@ export const NameInput = styled.div`
   align-items: center;
 
   label {
-    width: 6rem;
+    width: 7.5rem;
     ${(props) => props.theme.fontSizes['text-m']};
   }
 

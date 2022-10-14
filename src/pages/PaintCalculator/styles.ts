@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const PaintCalculatorContainer = styled.main`
-  height: 30rem;
+  height: 32rem;
   display: flex;
   flex-direction: column;
   margin: 10rem auto 3rem auto;
@@ -124,7 +124,7 @@ export const StepContainerItemInput = styled.div`
   align-items: center;
 
   label {
-    width: 6rem;
+    width: 7.5rem;
     ${(props) => props.theme.fontSizes['text-m']};
   }
 
@@ -140,6 +140,10 @@ export const StepContainerItemInput = styled.div`
     &:focus {
       outline: 0;
       box-shadow: 0 0 0 2px ${(props) => props.theme.colors['orange-500']};
+    }
+
+    &:read-only {
+      background: ${(props) => props.theme.colors['gray-300']};
     }
   }
 
