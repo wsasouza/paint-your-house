@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const PaintCalculatorContainer = styled.main`
   height: 30rem;
   display: flex;
-  // grid-template-columns: 1fr;
   flex-direction: column;
   margin: 10rem auto 3rem auto;
   max-width: 72rem;
@@ -81,10 +80,17 @@ export const PaintCalculatorInfoForm = styled.div`
 
 export const StepContainer = styled.div`
   border-top: 1px solid ${(props) => props.theme.colors['gray-300']};
+  max-width: 30rem;
   width: 100%;
   padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
+`
+
+export const StepContainerHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 export const StepContainerTitle = styled.h2`
@@ -100,6 +106,15 @@ export const StepContainerTitle = styled.h2`
     height: 0.5rem;
     border-radius: 1px;
     background: ${(props) => props.theme.colors['orange-500']};
+  }
+`
+export const StopFormButton = styled.button`
+  cursor: pointer;
+
+  &:hover {
+    svg {
+      animation: icon 0.7s;
+    }
   }
 `
 
@@ -135,8 +150,10 @@ export const StepContainerItemInput = styled.div`
 `
 
 export const PaintCalculatorActionButton = styled.button`
+  margin-top: 1.5rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.25rem;
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -149,15 +166,6 @@ export const PaintCalculatorActionButton = styled.button`
     svg {
       color: ${(props) => props.theme.colors['gray-900']};
       animation: icon 0.7s;
-    }
-
-    @keyframes icon {
-      0% {
-        transform: scale(0);
-      }
-      100% {
-        transform: scale(1.3);
-      }
     }
   }
 `

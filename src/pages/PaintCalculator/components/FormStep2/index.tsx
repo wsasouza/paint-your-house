@@ -1,21 +1,40 @@
+import { XSquare } from 'phosphor-react'
+import { useOutletContext } from 'react-router-dom'
+import { ContextType } from '../../../../layouts/StepFormLayout'
 import {
   StepContainer,
+  StepContainerHeader,
   StepContainerItemInput,
   StepContainerTitle,
+  StopFormButton,
 } from '../../styles'
 
 interface FormStep2Inputs {
   wall2: number
 }
 
-export function FormStep2(data: FormStep2Inputs) {
+export function FormStep2() {
+  const { handleStopForm } = useOutletContext<ContextType>()
+
   return (
     <StepContainer>
-      <StepContainerTitle>Parede 2/4</StepContainerTitle>
+      <StepContainerHeader>
+        <StepContainerTitle>Parede 2/4</StepContainerTitle>
+        <StopFormButton title="Cancelar" onClick={handleStopForm}>
+          <XSquare size={22} weight="regular" />
+        </StopFormButton>
+      </StepContainerHeader>
 
       <StepContainerItemInput>
         <label htmlFor="">Altura:</label>
-        <input type="number" min="1" max="10" step="0.01" placeholder="0,00" />
+        <input
+          autoFocus
+          type="number"
+          min="1"
+          max="10"
+          step="0.01"
+          placeholder="0,00"
+        />
         <span>m</span>
       </StepContainerItemInput>
       <StepContainerItemInput>

@@ -46,15 +46,6 @@ export const HeaderContainer = styled.header<{ scroll: boolean }>`
         color: ${(props) => props.theme.colors['gray-900']};
         animation: icon 0.7s;
       }
-
-      @keyframes icon {
-        0% {
-          transform: scale(0);
-        }
-        100% {
-          transform: scale(1.3);
-        }
-      }
     }
 
     &.active {
