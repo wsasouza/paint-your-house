@@ -4,12 +4,12 @@ import { ToastContainer } from 'react-toastify'
 
 import { Router } from './routes/Router'
 import { BusinessRulesProvider } from './contexts/BusinessRulesContexts'
+import { PaintCalculatorProvider } from './contexts/PaintCalculatorContexts'
 
 import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
 
 import 'react-toastify/dist/ReactToastify.min.css'
-import { PaintCalculatorProvider } from './contexts/PaintCalculatorContexts'
 
 export function App() {
   return (

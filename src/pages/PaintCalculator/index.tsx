@@ -1,4 +1,5 @@
 import { Play } from 'phosphor-react'
+
 import { usePaintCalcFormControls } from '../../hooks/usePaintCalcFormControls'
 
 import { StepFormLayout } from '../../layouts/StepFormLayout'
@@ -12,7 +13,7 @@ import {
 
 export function PaintCalculator() {
   const { startForm, formInit } = usePaintCalcFormControls()
-  console.log(startForm)
+
   return (
     <PaintCalculatorContainer>
       <PaintCalculatorTitle>Cálculo de tinta</PaintCalculatorTitle>

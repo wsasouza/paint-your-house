@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { SkipForward, XSquare } from 'phosphor-react'
+import { ArrowRight, Plus, XSquare } from 'phosphor-react'
 
 import { useBusinessRules } from '../../../../hooks/useBusinessRules'
 import { usePaintCalcAreas } from '../../../../hooks/usePaintCalcAreas'
@@ -9,6 +9,8 @@ import { usePaintCalcFormControls } from '../../../../hooks/usePaintCalcFormCont
 
 import {
   PaintCalculatorActionButton,
+  PaintCalculatorNavLinkButton,
+  StepActionContainer,
   StepContainer,
   StepContainerHeader,
   StepContainerItemInput,
@@ -162,9 +164,19 @@ export function FormStep1() {
           <input type="number" value={wallArea1.wallArea.toFixed(2)} readOnly />
           <span>m</span>
         </StepContainerItemInput>
-        <PaintCalculatorActionButton type="submit">
-          <SkipForward size={16} weight="duotone" /> Próximo
-        </PaintCalculatorActionButton>
+
+        <StepActionContainer>
+          {wallArea1.wallArea ? (
+            <PaintCalculatorNavLinkButton to={'/paint-calculator/step2'}>
+              Próximo
+              <ArrowRight size={16} weight="duotone" />
+            </PaintCalculatorNavLinkButton>
+          ) : (
+            <PaintCalculatorActionButton type="submit">
+              <Plus size={16} weight="duotone" /> Adicionar
+            </PaintCalculatorActionButton>
+          )}
+        </StepActionContainer>
       </form>
     </StepContainer>
   )

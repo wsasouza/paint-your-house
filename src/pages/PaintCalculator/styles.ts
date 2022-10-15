@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const PaintCalculatorContainer = styled.main`
@@ -80,7 +81,7 @@ export const PaintCalculatorInfoForm = styled.div`
 
 export const StepContainer = styled.div`
   border-top: 1px solid ${(props) => props.theme.colors['gray-300']};
-  max-width: 30rem;
+  max-width: 28rem;
   width: 100%;
   padding: 2rem 4rem;
   display: flex;
@@ -125,7 +126,6 @@ export const StepContainerItemInput = styled.div`
 
   label {
     width: 7.5rem;
-    ${(props) => props.theme.fontSizes['text-m']};
   }
 
   input {
@@ -143,6 +143,7 @@ export const StepContainerItemInput = styled.div`
     }
 
     &:read-only {
+      font-weight: bold;
       background: ${(props) => props.theme.colors['gray-300']};
     }
   }
@@ -153,8 +154,15 @@ export const StepContainerItemInput = styled.div`
   }
 `
 
-export const PaintCalculatorActionButton = styled.button`
+export const StepActionContainer = styled.div`
   margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+export const PaintCalculatorActionButton = styled.button`
+  font-size: ${(props) => props.theme.fontSizes['text-s']};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,6 +174,27 @@ export const PaintCalculatorActionButton = styled.button`
 
   &:hover {
     background: linear-gradient(180deg, #e4660d 0%, #ff8c3b 100%);
+
+    svg {
+      color: ${(props) => props.theme.colors['gray-900']};
+      animation: icon 0.7s;
+    }
+  }
+`
+
+export const PaintCalculatorNavLinkButton = styled(NavLink)`
+  color: ${(props) => props.theme.colors['gray-900']};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #fbfbfb 0%, #9b9b9b 100%);
+
+  &:hover {
+    background: linear-gradient(180deg, #9b9b9b 0%, #fbfbfb 100%);
 
     svg {
       color: ${(props) => props.theme.colors['gray-900']};

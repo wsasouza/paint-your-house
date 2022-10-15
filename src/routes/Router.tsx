@@ -14,7 +14,7 @@ export function Router() {
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="paint-calculator/*" element={<PaintCalculator />}>
+        <Route path="/paint-calculator/*" element={<PaintCalculator />}>
           <Route path="step1" element={<FormStep1 />} />
           <Route path="step2" element={<FormStep2 />} />
           <Route path="step3" element={<FormStep3 />} />
