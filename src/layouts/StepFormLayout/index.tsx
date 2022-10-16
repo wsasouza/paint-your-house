@@ -23,32 +23,32 @@ export function StepFormLayout() {
   return (
     <StepFormLayoutContainer>
       <Sidebar>
-        <SidebarItem end to={'step1'} variant={formStep1}>
-          <Icon>
+        <SidebarItem end to={'step1'}>
+          <Icon active={formStep1}>
             <NumberSquareOne size={32} />
           </Icon>
-          <Point />
+          <Point active={formStep1} />
         </SidebarItem>
 
-        <SidebarItem to={formStep1 ? 'step2' : '#'} variant={formStep2}>
-          <Icon>
+        <SidebarItem to={formStep1 ? 'step2' : '#'}>
+          <Icon active={formStep2}>
             <NumberSquareTwo size={32} />
           </Icon>
-          <Point />
+          <Point active={formStep2} />
         </SidebarItem>
 
-        <SidebarItem to={formStep2 ? 'step3' : '#'} variant={formStep3}>
-          <Icon>
+        <SidebarItem to={formStep2 ? 'step3' : '#'}>
+          <Icon active={formStep3}>
             <NumberSquareThree size={32} />
           </Icon>
-          <Point />
+          <Point active={formStep3} />
         </SidebarItem>
 
-        <SidebarItem to={formStep3 ? 'step4' : '#'} variant={formStep4}>
-          <Icon>
+        <SidebarItem to={formStep3 ? 'step4' : '#'}>
+          <Icon active={formStep4}>
             <NumberSquareFour size={32} />
           </Icon>
-          <Point />
+          <Point active={formStep4} />
         </SidebarItem>
       </Sidebar>
 

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const StepFormLayoutContainer = styled.div`
   display: flex;
@@ -16,29 +16,28 @@ export const Sidebar = styled.aside`
   border-top: 1px solid ${(props) => props.theme.colors['gray-300']};
 `
 
-interface SidebarItemProps {
-  variant: 0 | 1 | 2 | 3 | 4
-}
-
 export const SidebarItem = styled(NavLink)`
   margin-top: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 
-  &.active {
-    div:last-child {
-      background-color: ${(props) => props.theme.colors['orange-500']};
-      border: 3px solid ${(props) => props.theme.colors['gray-800']};
+  &:first-child:hover {
+    div:first-child {
+      background: ${(props) => props.theme.colors['orange-500']};
     }
   }
 `
 
-export const Icon = styled.div`
+interface IconProps {
+  active: boolean
+}
+
+export const Icon = styled.div<IconProps>`
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 6px;
-  background-color: ${(props) => props.theme.colors['gray-300']};
+  background: ${(props) => props.theme.colors['gray-300']};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,9 +47,24 @@ export const Icon = styled.div`
   svg {
     color: ${(props) => props.theme.colors['gray-100']};
   }
+
+  ${(props) =>
+    props.active &&
+    css`
+      background: ${(props) => props.theme.colors['orange-500']};
+
+      &:hover {
+        svg {
+          background: ${(props) => props.theme.colors['orange-500']};
+          animation: icon 0.7s;
+        }
+      }
+    `}
 `
 
-export const Point = styled.div`
+interface PointProps extends IconProps {}
+
+export const Point = styled.div<PointProps>`
   width: 0.375rem;
   height: 0.375rem;
   padding: 0.375rem;
@@ -61,4 +75,15 @@ export const Point = styled.div`
   z-index: 2;
   position: absolute;
   background: ${(props) => props.theme.colors['gray-100']};
+
+  ${(props) =>
+    props.active &&
+    css`
+      background: ${(props) => props.theme.colors['orange-500']};
+      opacity: 0.8;
+
+      &:hover {
+        background: ${(props) => props.theme.colors['orange-500']};
+      }
+    `}
 `
