@@ -22,6 +22,7 @@ export type BusinessRulesType = {
 export type Paint = {
   id: string
   size: number
+  count: number
 }
 
 export type PaintCoverType = {

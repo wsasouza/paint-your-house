@@ -17,10 +17,10 @@ export const paintCoverDefaultValue = {
 
 export const paintCanSizesDefaultValues = {
   paintCanSizes: [
-    { id: 'paint-1', size: 0.5 },
-    { id: 'paint-2', size: 2.5 },
-    { id: 'paint-3', size: 3.6 },
-    { id: 'paint-4', size: 18 },
+    { id: 1, size: 0.5, count: 0 },
+    { id: 2, size: 2.5, count: 0 },
+    { id: 3, size: 3.6, count: 0 },
+    { id: 4, size: 18, count: 0 },
   ],
   updatedAt: new Date('2022-10-08T01:46:53.946Z'),
 }

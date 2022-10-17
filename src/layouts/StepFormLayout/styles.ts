@@ -79,8 +79,8 @@ export const Point = styled.div<PointProps>`
   ${(props) =>
     props.active &&
     css`
-      background: ${(props) => props.theme.colors['orange-500']};
-      opacity: 0.8;
+      background: ${(props) => props.theme.colors['green-500']};
+      border: 3px solid ${(props) => props.theme.colors['orange-500']};
 
       &:hover {
         background: ${(props) => props.theme.colors['orange-500']};

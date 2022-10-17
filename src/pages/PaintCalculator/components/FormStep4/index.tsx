@@ -151,7 +151,7 @@ export function FormStep4() {
             Anterior
           </PaintCalculatorNavLinkButton>
           {wallArea4.wallArea ? (
-            <PaintCalculatorNavLinkButton to={'/paint-calculator/step4'}>
+            <PaintCalculatorNavLinkButton to={'/completed'}>
               Calcular
               <ArrowRight size={16} weight="duotone" />
             </PaintCalculatorNavLinkButton>
