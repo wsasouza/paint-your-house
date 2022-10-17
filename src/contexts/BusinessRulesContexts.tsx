@@ -1,5 +1,6 @@
 import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { createContext } from 'use-context-selector'
+import { toast } from 'react-toastify'
 
 import {
   initialBusinessRules,
@@ -88,6 +89,7 @@ export function BusinessRulesProvider({
       }
 
       setBusinessRules(updatedRules)
+      toast.info('Regras de cálculo de tinta foram atualizadas.')
     },
     [],
   )
@@ -102,6 +104,7 @@ export function BusinessRulesProvider({
       }
 
       setPaintCover(updateCover)
+      toast.info('Regra de rendimento de tinta foi atualizada.')
     },
     [],
   )
