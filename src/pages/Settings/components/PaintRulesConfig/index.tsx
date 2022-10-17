@@ -86,7 +86,7 @@ export function PaintRulesConfig() {
         <SettingsSubtitle>Tamanhos das latas de tinta</SettingsSubtitle>
 
         <PaintSizeContainer>
-          {paintCanSizesRules.paintCanSizes.map((paint) => {
+          {paintCanSizesRules.map((paint) => {
             return (
               <PaintSize key={paint.id}>
                 <PaintBucket size={22} weight="duotone" />

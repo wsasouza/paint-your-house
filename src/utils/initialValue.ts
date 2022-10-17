@@ -15,15 +15,12 @@ export const paintCoverDefaultValue = {
   updatedAt: new Date('2022-10-08T01:46:53.946Z'),
 }
 
-export const paintCanSizesDefaultValues = {
-  paintCanSizes: [
-    { id: 1, size: 0.5, count: 0 },
-    { id: 2, size: 2.5, count: 0 },
-    { id: 3, size: 3.6, count: 0 },
-    { id: 4, size: 18, count: 0 },
-  ],
-  updatedAt: new Date('2022-10-08T01:46:53.946Z'),
-}
+export const paintSizes = [
+  { id: 1, size: 18, count: 0 },
+  { id: 2, size: 3.6, count: 0 },
+  { id: 3, size: 2.5, count: 0 },
+  { id: 4, size: 0.5, count: 0 },
+]
 
 export function initialBusinessRules(key: string) {
   const saved = localStorage.getItem(key)
@@ -51,18 +48,4 @@ export function initialPaintCover(key: string) {
     }
     return initialValueWithDate
   } else return paintCoverDefaultValue
-}
-
-export function initialPaintCanSizes(key: string) {
-  const saved = localStorage.getItem(key)
-
-  if (saved) {
-    const initialValue = JSON.parse(saved || '')
-
-    const initialValueWithDate = {
-      ...initialValue,
-      updatedAt: new Date(initialValue.updatedAt),
-    }
-    return initialValueWithDate
-  } else return paintCanSizesDefaultValues
 }

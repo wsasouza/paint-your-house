@@ -26,6 +26,12 @@ export function usePaintCalcAreas() {
     return context.wallArea4
   })
 
+  const areaTotal =
+    wallArea1.wallArea +
+    wallArea2.wallArea +
+    wallArea3.wallArea +
+    wallArea4.wallArea
+
   const updateWallArea1 = useContextSelector(
     PaintCalculatorContext,
     (context) => {
@@ -60,6 +66,7 @@ export function usePaintCalcAreas() {
     wallArea2,
     wallArea3,
     wallArea4,
+    areaTotal,
     updateName,
     updateWallArea1,
     updateWallArea2,

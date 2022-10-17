@@ -3,7 +3,7 @@ import { createContext } from 'use-context-selector'
 
 import {
   initialBusinessRules,
-  initialPaintCanSizes,
+  paintSizes,
   initialPaintCover,
 } from '../utils/initialValue'
 
@@ -20,7 +20,7 @@ export type BusinessRulesType = {
 }
 
 export type Paint = {
-  id: string
+  id: number
   size: number
   count: number
 }
@@ -30,15 +30,10 @@ export type PaintCoverType = {
   updatedAt: Date
 }
 
-export type PaintCanSizesType = {
-  paintCanSizes: Paint[]
-  updatedAt: Date
-}
-
 interface BusinessRulesContextType {
   businessRules: BusinessRulesType
   paintCover: PaintCoverType
-  paintCanSizes: PaintCanSizesType
+  paintCanSizes: Paint[]
   updateBusinessRules: (data: Omit<BusinessRulesType, 'updatedAt'>) => void
   updatePaintCover: (data: Omit<PaintCoverType, 'updatedAt'>) => void
 }
@@ -53,7 +48,6 @@ export const BusinessRulesContext = createContext(
 
 const BUSINESS_RULES = '@PaintYourHouse:BusinessRules'
 const PAINT_COVER = '@PaintYourHouse:PaintCover'
-const PAINT_CAN_SIZES = '@PaintYourHouse:PaintCanSizes'
 
 export function BusinessRulesProvider({
   children,
@@ -66,11 +60,7 @@ export function BusinessRulesProvider({
     initialPaintCover(PAINT_COVER),
   )
 
-  const [paintCanSizes] = useState<PaintCanSizesType>(
-    initialPaintCanSizes(PAINT_CAN_SIZES),
-  )
-
-  console.log(paintCanSizes)
+  const [paintCanSizes] = useState<Paint[]>(paintSizes)
 
   const updateBusinessRules = useCallback(
     (data: Omit<BusinessRulesType, 'updatedAt'>) => {
@@ -123,10 +113,6 @@ export function BusinessRulesProvider({
   useEffect(() => {
     localStorage.setItem(PAINT_COVER, JSON.stringify(paintCover))
   }, [paintCover])
-
-  useEffect(() => {
-    localStorage.setItem(PAINT_CAN_SIZES, JSON.stringify(paintCanSizes))
-  }, [paintCanSizes])
 
   return (
     <BusinessRulesContext.Provider
