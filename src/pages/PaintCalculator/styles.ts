@@ -183,7 +183,7 @@ export const PaintCalculatorActionButton = styled.button`
 `
 
 interface NavLinkButtonProps {
-  action?: boolean
+  action?: string
 }
 
 export const PaintCalculatorNavLinkButton = styled(NavLink)<NavLinkButtonProps>`

@@ -66,7 +66,7 @@ export function FormStep4() {
     }
   }
 
-  const navLinkAction = true
+  const navLinkAction = 'action'
 
   return (
     <StepContainer>
