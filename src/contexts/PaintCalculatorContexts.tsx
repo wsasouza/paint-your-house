@@ -105,7 +105,7 @@ export function PaintCalculatorProvider({
     setFormStep3(false)
     setWallArea4(initialValueWallArea)
     setFormStep4(false)
-    toast.info('O cálculo foi cancelado.')
+    toast.info('O cálculo foi finalizado.')
   }
 
   return (
