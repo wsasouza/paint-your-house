@@ -80,7 +80,7 @@ export const Point = styled.div<PointProps>`
     props.active &&
     css`
       background: ${(props) => props.theme.colors['green-500']};
-      border: 3px solid ${(props) => props.theme.colors['orange-500']};
+      border: 3px solid ${(props) => props.theme.colors['gray-400']};
 
       &:hover {
         background: ${(props) => props.theme.colors['orange-500']};

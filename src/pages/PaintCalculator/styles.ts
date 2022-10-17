@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const PaintCalculatorContainer = styled.main`
   height: 32rem;
@@ -182,7 +182,11 @@ export const PaintCalculatorActionButton = styled.button`
   }
 `
 
-export const PaintCalculatorNavLinkButton = styled(NavLink)`
+interface NavLinkButtonProps {
+  action?: boolean
+}
+
+export const PaintCalculatorNavLinkButton = styled(NavLink)<NavLinkButtonProps>`
   color: ${(props) => props.theme.colors['gray-900']};
   display: flex;
   align-items: center;
@@ -201,4 +205,13 @@ export const PaintCalculatorNavLinkButton = styled(NavLink)`
       animation: icon 0.7s;
     }
   }
+
+  ${(props) =>
+    props.action &&
+    css`
+  background: linear-gradient(180deg, #39B74A 0%, #07a31c 100%);
+
+  &:hover {
+    background: linear-gradient(180deg, #07a31c 0%, #39B74A 100%);
+  `}
 `

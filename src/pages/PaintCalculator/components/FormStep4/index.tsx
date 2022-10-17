@@ -66,6 +66,8 @@ export function FormStep4() {
     }
   }
 
+  const navLinkAction = true
+
   return (
     <StepContainer>
       <StepContainerHeader>
@@ -151,7 +153,10 @@ export function FormStep4() {
             Anterior
           </PaintCalculatorNavLinkButton>
           {wallArea4.wallArea ? (
-            <PaintCalculatorNavLinkButton to={'/completed'}>
+            <PaintCalculatorNavLinkButton
+              action={navLinkAction}
+              to={'/completed'}
+            >
               Calcular
               <ArrowRight size={16} weight="duotone" />
             </PaintCalculatorNavLinkButton>

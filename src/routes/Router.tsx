@@ -7,7 +7,7 @@ import { FormStep1 } from '../pages/PaintCalculator/components/FormStep1'
 import { FormStep2 } from '../pages/PaintCalculator/components/FormStep2'
 import { FormStep3 } from '../pages/PaintCalculator/components/FormStep3'
 import { FormStep4 } from '../pages/PaintCalculator/components/FormStep4'
-import { CalcCompleted } from '../pages/PaintCalculator/components/CalcCompleted'
+import { CalcCompleted } from '../pages/CalcCompleted'
 
 export function Router() {
   return (
