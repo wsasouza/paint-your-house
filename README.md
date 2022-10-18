@@ -1,9 +1,15 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Paint Your House" />
+  <h1>Desktop</h1>
+  <img src="./src/assets/demo-desktop.gif" alt="Paint Your House" />
+  <br>
+  <br>
+  <h1>Responsive</h1>
+  <img src="./src/assets/demo-mobile.gif" alt="Paint Your House" />
 
 &#xa0;
 
-  <!-- <a href="https://paintyourhouse.netlify.app">Demo</a> -->
+<a href="https://paintyourhouse.netlify.app/">Online App</a>
+
 </div>
 
 <h1 align="center">Paint Your House</h1>
