@@ -1,4 +1,6 @@
+import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import {
   NumberSquareFour,
   NumberSquareOne,
@@ -17,11 +19,14 @@ import {
 } from './styles'
 
 export function StepFormLayout() {
+  const [animationParent] = useAutoAnimate()
   const { formStep1, formStep2, formStep3, formStep4 } =
     usePaintCalcFormControls()
 
   return (
-    <StepFormLayoutContainer>
+    <StepFormLayoutContainer
+      ref={animationParent as React.RefObject<HTMLDivElement>}
+    >
       <Sidebar>
         <SidebarItem end to={'step1'}>
           <Icon active={formStep1}>

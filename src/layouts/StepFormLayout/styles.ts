@@ -3,7 +3,11 @@ import styled, { css } from 'styled-components'
 
 export const StepFormLayoutContainer = styled.div`
   display: flex;
-  flex: 1;
+  width: 100%;
+
+  @media (max-width: 460px) {
+    flex-direction: column;
+  }
 `
 
 export const Sidebar = styled.aside`
@@ -14,6 +18,20 @@ export const Sidebar = styled.aside`
   padding-left: 1rem;
   padding-right: 1.5rem;
   border-top: 1px solid ${(props) => props.theme.colors['gray-300']};
+
+  @media (max-width: 500px) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  @media (max-width: 460px) {
+    padding: 0 0 1rem 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    border-right: 0;
+  }
 `
 
 export const SidebarItem = styled(NavLink)`
@@ -60,6 +78,9 @@ export const Icon = styled.div<IconProps>`
         }
       }
     `}
+
+  @media(max-width: 460px) {
+  }
 `
 
 interface PointProps extends IconProps {}
@@ -86,4 +107,12 @@ export const Point = styled.div<PointProps>`
         background: ${(props) => props.theme.colors['orange-500']};
       }
     `}
+
+  @media(max-width: 500px) {
+    margin-left: 2.75rem;
+  }
+
+  @media (max-width: 460px) {
+    margin-top: 4.5rem;
+  }
 `

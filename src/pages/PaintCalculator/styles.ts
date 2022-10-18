@@ -13,6 +13,11 @@ export const PaintCalculatorContainer = styled.main`
   border-radius: 6px;
   gap: 2rem;
   font-size: ${(props) => props.theme.fontSizes['text-s']};
+
+  @media (max-width: 600px) {
+    padding: 1rem;
+    height: 35rem;
+  }
 `
 
 export const PaintCalculatorTitle = styled.h1`
@@ -86,6 +91,10 @@ export const StepContainer = styled.div`
   padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 600px) {
+    padding: 1.5rem;
+  }
 `
 
 export const StepContainerHeader = styled.div`
@@ -125,7 +134,7 @@ export const StepContainerItemInput = styled.div`
   align-items: center;
 
   label {
-    width: 7.5rem;
+    min-width: 7.5rem;
   }
 
   input {
@@ -133,7 +142,7 @@ export const StepContainerItemInput = styled.div`
     text-align: right;
     border: 0;
     padding: 0.25rem;
-    width: 3.8rem;
+    max-width: 3.8rem;
     height: 1.5rem;
     border-radius: 6px;
 
@@ -151,6 +160,13 @@ export const StepContainerItemInput = styled.div`
   span {
     width: 1rem;
     margin-left: 0.25rem;
+  }
+
+  @media (max-width: 460px) {
+    justify-content: space-between;
+    input {
+      min-width: 3rem;
+    }
   }
 `
 

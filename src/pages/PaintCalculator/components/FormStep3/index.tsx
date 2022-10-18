@@ -78,71 +78,81 @@ export function FormStep3() {
       <form onSubmit={handleSubmit(handleStepFormSubmit)}>
         <StepContainerItemInput>
           <label htmlFor="height">Altura:</label>
-          <input
-            id="height"
-            autoFocus
-            type="number"
-            min="0.1"
-            max="10"
-            step="0.01"
-            {...register('height', {
-              value: Number(wallArea3.height.toFixed(2)),
-            })}
-            required
-          />
-          <span>m</span>
+          <div>
+            <input
+              id="height"
+              autoFocus
+              type="number"
+              min="0.1"
+              max="10"
+              step="0.01"
+              {...register('height', {
+                value: Number(wallArea3.height.toFixed(2)),
+              })}
+              required
+            />
+            <span>m</span>
+          </div>
         </StepContainerItemInput>
         <StepContainerItemInput>
           <label htmlFor="width">Comprimento:</label>
-          <input
-            id="width"
-            type="number"
-            min="0.1"
-            max="50"
-            step="0.01"
-            {...register('width', {
-              value: Number(wallArea3.width.toFixed(2)),
-            })}
-            required
-          />
-          <span>m</span>
+          <div>
+            <input
+              id="width"
+              type="number"
+              min="0.1"
+              max="50"
+              step="0.01"
+              {...register('width', {
+                value: Number(wallArea3.width.toFixed(2)),
+              })}
+              required
+            />
+            <span>m</span>
+          </div>
         </StepContainerItemInput>
         <StepContainerItemInput>
           <label htmlFor="doors">Portas:</label>
-          <input
-            id="doors"
-            type="number"
-            min="0"
-            max="10"
-            step="1"
-            {...register('doors', {
-              value: wallArea3.doors,
-            })}
-          />
-          <span>un</span>
+          <div>
+            <input
+              id="doors"
+              type="number"
+              min="0"
+              max="10"
+              step="1"
+              {...register('doors', {
+                value: wallArea3.doors,
+              })}
+            />
+            <span>un</span>
+          </div>
         </StepContainerItemInput>
         <StepContainerItemInput>
           <label htmlFor="windows">Janelas:</label>
-          <input
-            id="windows"
-            type="number"
-            min="0"
-            max="10"
-            step="1"
-            {...register('windows', {
-              value: wallArea3.windows,
-            })}
-          />
-          <span>un</span>
+          <div>
+            <input
+              id="windows"
+              type="number"
+              min="0"
+              max="10"
+              step="1"
+              {...register('windows', {
+                value: wallArea3.windows,
+              })}
+            />
+            <span>un</span>
+          </div>
         </StepContainerItemInput>
         <StepContainerItemInput>
           <label htmlFor="">Área da parede 3:</label>
-          <input
-            type="text"
-            value={wallArea3.wallArea.toFixed(2).replace('.', ',')}
-            readOnly
-          />
-          <span>m</span>
+          <div>
+            <input
+              type="text"
+              value={wallArea3.wallArea.toFixed(2).replace('.', ',')}
+              readOnly
+            />
+            <span>m</span>
+          </div>
         </StepContainerItemInput>
 
         <StepActionContainer>

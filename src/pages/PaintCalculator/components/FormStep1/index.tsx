@@ -95,74 +95,88 @@ export function FormStep1() {
         </NameInput>
         <StepContainerItemInput>
           <label htmlFor="height">Altura:</label>
-          <input
-            id="height"
-            type="number"
-            min="0.1"
-            max="10"
-            step="0.01"
-            placeholder="0,00"
-            {...register('height', {
-              value: Number(
-                `${wallArea1.height !== 0 ? wallArea1.height : ''}`,
-              ),
-            })}
-            required
-          />
-          <span>m</span>
+          <div>
+            <input
+              id="height"
+              type="number"
+              min="0.1"
+              max="10"
+              step="0.01"
+              placeholder="0,00"
+              {...register('height', {
+                value: Number(
+                  `${wallArea1.height !== 0 ? wallArea1.height : ''}`,
+                ),
+              })}
+              required
+            />
+            <span>m</span>
+          </div>
         </StepContainerItemInput>
         <StepContainerItemInput>
           <label htmlFor="width">Comprimento:</label>
-          <input
-            id="width"
-            type="number"
-            min="0.1"
-            max="50"
-            step="0.01"
-            placeholder="0,00"
-            {...register('width', {
-              value: Number(`${wallArea1.width > 0 ? wallArea1.width : ''}`),
-            })}
-            required
-          />
-          <span>m</span>
+          <div>
+            <input
+              id="width"
+              type="number"
+              min="0.1"
+              max="50"
+              step="0.01"
+              placeholder="0,00"
+              {...register('width', {
+                value: Number(`${wallArea1.width > 0 ? wallArea1.width : ''}`),
+              })}
+              required
+            />
+            <span>m</span>
+          </div>
         </StepContainerItemInput>
         <StepContainerItemInput>
           <label htmlFor="doors">Portas:</label>
-          <input
-            id="doors"
-            type="number"
-            min="0"
-            max="10"
-            step="1"
-            placeholder="0"
-            {...register('doors', {
-              value: Number(`${wallArea1.doors >= 0 ? wallArea1.doors : ''}`),
-            })}
-          />
-          <span>un</span>
+          <div>
+            <input
+              id="doors"
+              type="number"
+              min="0"
+              max="10"
+              step="1"
+              placeholder="0"
+              {...register('doors', {
+                value: Number(`${wallArea1.doors >= 0 ? wallArea1.doors : ''}`),
+              })}
+            />
+            <span>un</span>
+          </div>
         </StepContainerItemInput>
         <StepContainerItemInput>
           <label htmlFor="windows">Janelas:</label>
-          <input
-            id="windows"
-            type="number"
-            min="0"
-            max="10"
-            step="1"
-            placeholder="0"
-            {...register('windows', {
-              value: Number(
-                `${wallArea1.windows >= 0 ? wallArea1.windows : ''}`,
-              ),
-            })}
-          />
-          <span>un</span>
+          <div>
+            <input
+              id="windows"
+              type="number"
+              min="0"
+              max="10"
+              step="1"
+              placeholder="0"
+              {...register('windows', {
+                value: Number(
+                  `${wallArea1.windows >= 0 ? wallArea1.windows : ''}`,
+                ),
+              })}
+            />
+            <span>un</span>
+          </div>
         </StepContainerItemInput>
         <StepContainerItemInput>
           <label htmlFor="">Área da parede 1:</label>
-          <input type="number" value={wallArea1.wallArea.toFixed(2)} readOnly />
-          <span>m</span>
+          <div>
+            <input
+              type="number"
+              value={wallArea1.wallArea.toFixed(2)}
+              readOnly
+            />
+            <span>m</span>
+          </div>
         </StepContainerItemInput>
 
         <StepActionContainer>

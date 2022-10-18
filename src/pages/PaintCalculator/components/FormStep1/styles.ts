@@ -14,7 +14,7 @@ export const NameInput = styled.div`
     background: ${(props) => props.theme.colors['gray-100']};
     border: 0;
     padding: 0.5rem;
-    width: 12rem;
+    max-width: 12rem;
     height: 2rem;
     border-radius: 6px;
 
