@@ -46,6 +46,7 @@ Com base na quantidade necessária o sistema aponta os tamanhos de lata de tinta
 ## :sparkles: Features
 
 :heavy_check_mark: Configurações personalizadas de todas as dimensões;\
+:heavy_check_mark: Configuração personalizada do rendimento da tinta;\
 :heavy_check_mark: Captura de dados de cada parede de forma isolada;\
 :heavy_check_mark: Cálculo de áreas e quantidade de tinta necessária;
 
